@@ -1,7 +1,19 @@
 import React  from "react";
 
 
-export const NUM_OF_ITEMS = 5;
+
+function addedItems(textes) {
+    return textes.map(text => <li>{text}</li>);
+}
+
+
+let names = ["A","B","C"];
+
+export const listItems =  addedItems(names);
+
+
+
+
 
 const Custom = (props) => (
     <div className="Custom">
