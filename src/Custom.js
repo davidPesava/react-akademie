@@ -1,19 +1,17 @@
-import React, { Component } from "react";
+import React  from "react";
 
-class Custom extends Component {
-  render() {
-    let textes = ["text1", "text2", "text3"];
 
-    const listItems = textes.map(text => <li>{text}</li>);
+export const NUM_OF_ITEMS = 5;
 
-    return (
-      <div className="Custom">
+const Custom = (props) => (
+    <div className="Custom">
         <header className="App-header">
-          <ul>{listItems}</ul>
+            <ul>
+                <li>{props.name}</li>
+            </ul>
         </header>
-      </div>
-    );
-  }
-}
+    </div>
+)
+
 
 export default Custom;
