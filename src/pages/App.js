@@ -1,20 +1,22 @@
 import React from "react";
 
-const App = () => (
-  <div>
-    <header>
-      <h1>basic page for Wallet app</h1>
+import Record from "../components/Record"
 
-      <a
-        className="App-link"
-        href="https://reactjs.org"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        Learn React
-      </a>
-    </header>
-  </div>
+import data from "../data.json"
+
+
+const App = () => (
+    <div>
+        <header>
+            <h1>basic page for Wallet app</h1>
+
+            {data.map(item => (
+                <Record name={item.name} id={item.id} created={item.created} type={item.type} value={item.value}/>
+            ))}
+
+
+        </header>
+    </div>
 );
 
 export default App;
