@@ -10,7 +10,17 @@ class ButtonAddRecord extends React.Component {
     }
 
     addRecord = () => {
-        this.setState({data: "test"});
+
+        let newData = data;
+        newData.push({
+            "name": "Inventi",
+            "type": "income",
+            "value": 643,
+            "created": 1487911188000,
+            "id": 1487911188000
+        });
+
+        this.setState({ data: newData})
     }
 
 
