@@ -9,7 +9,7 @@ class ButtonAddRecord extends React.Component {
         this.state = {data: data};
     }
 
-    addRecord() {
+    addRecord = () => {
         this.setState({data: "test"});
     }
 
