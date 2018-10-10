@@ -16,9 +16,9 @@ class App extends React.Component {
 
         let newData = data;
         newData.push({
-            "name": "Inventi",
+            "name": "Income from button",
             "type": "income",
-            "value": 643,
+            "value": 69,
             "created": 1487911188000,
             "id": 1487911188000
         });
@@ -30,7 +30,6 @@ class App extends React.Component {
         return (
 
         <div>
-            <button  onClick={this.addRecord}>Add Record</button>
 
             <header>
                 <h1>basic page for Wallet app</h1>
@@ -39,6 +38,7 @@ class App extends React.Component {
             <section>
 
 
+                <button  onClick={this.addRecord}>Add Record</button>
 
 
 
