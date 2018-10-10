@@ -25,38 +25,44 @@ class App extends React.Component {
 
         this.setState({data: newData})
     }
+
     render() {
 
         return (
 
-        <div>
+            <div>
 
-            <header>
-                <h1>basic page for Wallet app</h1>
-            </header>
+                <header>
+                    <h1>basic page for Wallet app</h1>
+                </header>
 
-            <section>
-
-
-                <button  onClick={this.addRecord}>Add Record</button>
+                <section>
 
 
-
-                <div className="records">
-
-                    {data.map(item => (
-                        <Record name={item.name} id={item.id} created={item.created} type={item.type}
-                                value={item.value}/>
-                    ))}
-
-                </div>
+                    <button onClick={this.addRecord}>Add Record</button>
 
 
-            </section>
+                    <div className="records">
+
+                        {data.map(item => (
+                            <Record
+                                name={item.name}
+                                id={item.id}
+                                created={item.created}
+                                type={item.type}
+                                value={item.value}
+                            />
+                        ))}
+
+                    </div>
 
 
-        </div>
-        ) }
+                </section>
+
+
+            </div>
+        )
+    }
 }
 
 export default App;
