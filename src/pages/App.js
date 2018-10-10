@@ -7,23 +7,24 @@ import data from "../data.json"
 
 class App extends React.Component {
 
-    constructor(props) {
-        super(props);
-        this.state = {data: data};
+    state = {data: []};
+
+    componentDidMount() {
+        this.setState({data: data})
     }
 
+
     addRecord = () => {
-
-        let newData = data;
-        newData.push({
-            "name": "Income from button",
-            "type": "income",
-            "value": 69,
-            "created": 1487911188000,
-            "id": 1487911188000
-        });
-
-        this.setState({data: newData})
+        this.setState(prevState => ({data: [
+                ...prevState.data,
+                {
+                    "name": "aliqua officia",
+                    "type": "income",
+                    "value": 57,
+                    "created": 1494025746000,
+                    "id": 1494025746000
+                }
+            ]}));
     }
 
     render() {
@@ -51,6 +52,7 @@ class App extends React.Component {
                                 created={item.created}
                                 type={item.type}
                                 value={item.value}
+                                key = {item.id}
                             />
                         ))}
 
