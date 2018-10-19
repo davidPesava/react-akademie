@@ -1,22 +1,33 @@
 import React from "react";
 
-import Id from "./Id";
-import Type from "./Type";
-import Created from "./Created"
+//import Id from "./Id";
+//import Type from "./Type";
+//import Created from "./Created"
 import Name from "./Name";
 import Value from "./Value";
+import styled from "styled-components";
+
+
+
+const RecordContainer = styled.div`
+  margin-bottom: 1rem;
+  padding: 1rem;  
+  display: flex;
+  border-bottom: 1px solid lightgray;
+  
+  
+`;
 
 
 
 
 const Record = (props) => (
-    <div className="single-record">
-        <Id IdId={props.id}  />
+
+    <RecordContainer className="register">
         <Name nameName={props.name}  />
-        <Value valueValue={props.value}/>
-        <Type typeName = {props.type} />
-        <Created createdAt = {props.created} />
-    </div>
+       <div className={props.type}> <Value valueValue={props.value}/></div>
+    </RecordContainer>
+
 )
 
 
