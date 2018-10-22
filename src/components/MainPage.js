@@ -115,16 +115,11 @@ class MainPage extends Component {
     }
 
 
-
-
-
-
-
     filterTransactions = () => {
 
         const {filterType, transactions} = this.state;
 
-        switch(filterType) {
+        switch (filterType) {
             case 0:
             default:
                 return transactions;
@@ -142,18 +137,18 @@ class MainPage extends Component {
         }
     };
 
-    filterI= () => {
+    filterI = () => {
         this.setState({filterType: 1})
 
     }
 
 
-    filterE= () => {
+    filterE = () => {
         this.setState({filterType: 2})
 
     }
 
-    filterA= () => {
+    filterA = () => {
         this.setState({filterType: 0})
 
     }
@@ -168,15 +163,13 @@ class MainPage extends Component {
     addTransaction = event => {
 
         axios.post('/transactions', {
-
-
             "name": this.state.newTransaction.name,
             "type": this.state.newTransaction.type,
             "value": this.state.newTransaction.value,
-            "id": Math.floor(Math.random() * 10000)
+            "id": this.state.newTransaction.id
+        })
 
 
-    })
             .then(function (response) {
                 console.log(response);
             })
@@ -212,20 +205,18 @@ class MainPage extends Component {
     }
 
 
-
     refreshRecords = () => {
         axios.get("/transactions").then(response => {
             this.setState({transactions: response.data});
         })
     }
 
-    removeRecord =(removingId) => {
+    removeRecord = (removingId) => {
         axios.delete('/transactions/' + removingId).then(this.refreshRecords)
     }
 
-
     render() {
-        const { newTransaction: {name, value, type}} = this.state
+        const {newTransaction: {name, value, type}} = this.state
         return (
             <div>
                 <Header>
@@ -276,7 +267,9 @@ class MainPage extends Component {
 
                     {this.filterTransactions().map(({name, value, type, id}) => (
                         <div>
-                            <div onClick={() => { this.removeRecord(id) }} >{id}  </div>
+                            <div onClick={() => {
+                                this.removeRecord(id)
+                            }}>{id}  </div>
 
                             <Record key={id} name={name} value={this.isExpense(type, value)} type={type} id={id}/>
                         </div>
