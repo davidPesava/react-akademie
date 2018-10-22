@@ -7,6 +7,7 @@ import Name from "./Name";
 import Value from "./Value";
 import styled from "styled-components";
 
+//import axios from "../util/axios";
 
 
 const RecordContainer = styled.div`
@@ -19,16 +20,14 @@ const RecordContainer = styled.div`
 `;
 
 
+//axios.delete('/transactions', {data:props.id})
+
 
 
 const Record = (props) => (
-
     <RecordContainer className="register">
         <Name nameName={props.name}  />
-       <div className={props.type}> <Value valueValue={props.value}/></div>
+        <div className={props.type}> <Value valueValue={props.value}/></div>
     </RecordContainer>
-
 )
-
-
 export default Record

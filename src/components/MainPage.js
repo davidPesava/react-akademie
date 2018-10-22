@@ -173,7 +173,6 @@ class MainPage extends Component {
             "name": this.state.newTransaction.name,
             "type": this.state.newTransaction.type,
             "value": this.state.newTransaction.value,
-            "created": "asdasd",
             "id": Math.floor(Math.random() * 10000)
 
 
@@ -210,6 +209,18 @@ class MainPage extends Component {
         } else {
             return '+ ' + amount;
         }
+    }
+
+
+
+    refreshRecords = () => {
+        axios.get("/transactions").then(response => {
+            this.setState({transactions: response.data});
+        })
+    }
+
+    removeRecord =(removingId) => {
+        axios.delete('/transactions/' + removingId).then(this.refreshRecords)
     }
 
 
@@ -264,7 +275,11 @@ class MainPage extends Component {
 
 
                     {this.filterTransactions().map(({name, value, type, id}) => (
-                        <Record key={id} name={name} value={this.isExpense(type, value)} type={type}/>
+                        <div>
+                            <div onClick={() => { this.removeRecord(id) }} >{id}  </div>
+
+                            <Record key={id} name={name} value={this.isExpense(type, value)} type={type} id={id}/>
+                        </div>
                     ))}
                 </Section>
             </div>
