@@ -4,7 +4,9 @@ import {Link} from 'react-router-dom'
 import Modal from 'react-modal';
 
 import Record from "../components/Record"
-import data from "../data.json";
+
+import axios from "../util/axios";
+
 
 const Button = styled.button`
   color: white;
@@ -105,7 +107,11 @@ class MainPage extends Component {
     };
 
     componentDidMount() {
-        this.setState({transactions: data});
+
+        axios.get("/transactions").then(response => {
+            this.setState({transactions: response.data});
+        })
+
     }
 
 
@@ -160,6 +166,25 @@ class MainPage extends Component {
     }
 
     addTransaction = event => {
+
+        axios.post('/transactions', {
+
+
+            "name": this.state.newTransaction.name,
+            "type": this.state.newTransaction.type,
+            "value": this.state.newTransaction.value,
+            "created": "asdasd",
+            "id": Math.floor(Math.random() * 10000)
+
+
+    })
+            .then(function (response) {
+                console.log(response);
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
+
         event.preventDefault();
         this.setState(prevState => ({
             transactions: [...prevState.transactions.concat(prevState.newTransaction)]
