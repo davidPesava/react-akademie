@@ -1,4 +1,6 @@
-[
+{
+
+  "transactions": [
     {
       "name": "Lorem voluptate",
       "type": "income",
@@ -462,3 +464,5 @@
       "id": 1522370056002
     }
   ]
+
+}
