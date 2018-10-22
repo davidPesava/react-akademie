@@ -1,38 +1,11 @@
 {
   "transactions": [
     {
-      "name": "",
+      "name": "Sample transaction",
       "type": "income",
-      "value": 0,
-      "created": 2916,
-      "id": 3354
-    },
-    {
-      "name": "",
-      "type": "income",
-      "value": 0,
-      "created": 7186,
-      "id": 3140
-    },
-    {
-      "name": "",
-      "type": "income",
-      "value": 0,
-      "created": 6072,
-      "id": 104
-    },
-    {
-      "name": "",
-      "type": "income",
-      "value": 0,
-      "created": 1485,
-      "id": 4247
-    },
-    {
-      "name": "",
-      "type": "income",
-      "value": 0,
-      "id": 6302
+      "value": 999,
+      "created": 1,
+      "id": 1
     }
   ]
 }
