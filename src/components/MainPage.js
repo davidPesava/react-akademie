@@ -6,6 +6,7 @@ import Modal from 'react-modal';
 import Record from "../components/Record"
 
 import axios from "../util/axios";
+import withTransactions from "./withTransactions";
 
 
 const Button = styled.button`
@@ -96,7 +97,6 @@ class MainPage extends Component {
     }
 
     state = {
-        transactions: [],
         newTransaction: {
             name: '',
             value: 0,
@@ -106,18 +106,11 @@ class MainPage extends Component {
         filterType: 0
     };
 
-    componentDidMount() {
-
-        axios.get("/transactions").then(response => {
-            this.setState({transactions: response.data});
-        })
-
-    }
-
 
     filterTransactions = () => {
 
-        const {filterType, transactions} = this.state;
+        const {filterType} = this.state;
+        const {transactions} = this.props;
 
         switch (filterType) {
             case 0:
@@ -281,4 +274,4 @@ class MainPage extends Component {
     }
 }
 
-export default MainPage;
+export default withTransactions(MainPage);
