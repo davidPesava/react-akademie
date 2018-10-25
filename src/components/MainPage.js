@@ -6,7 +6,6 @@ import Modal from 'react-modal';
 import Record from "../components/Record"
 
 import axios from "../util/axios";
-import withTransactions from "./withTransactions";
 
 
 const Button = styled.button`
@@ -97,6 +96,7 @@ class MainPage extends Component {
     }
 
     state = {
+        transactions: [],
         newTransaction: {
             name: '',
             value: 0,
@@ -106,13 +106,25 @@ class MainPage extends Component {
         filterType: 0
     };
 
+    componentDidMount() {
+
+        axios.get("/transactions").then(response => {
+            this.setState({transactions: response.data});
+        })
+
+    }
+
+
+
+
+
+
 
     filterTransactions = () => {
 
-        const {filterType} = this.state;
-        const {transactions} = this.props;
+        const {filterType, transactions} = this.state;
 
-        switch (filterType) {
+        switch(filterType) {
             case 0:
             default:
                 return transactions;
@@ -130,18 +142,18 @@ class MainPage extends Component {
         }
     };
 
-    filterI = () => {
+    filterI= () => {
         this.setState({filterType: 1})
 
     }
 
 
-    filterE = () => {
+    filterE= () => {
         this.setState({filterType: 2})
 
     }
 
-    filterA = () => {
+    filterA= () => {
         this.setState({filterType: 0})
 
     }
@@ -156,13 +168,15 @@ class MainPage extends Component {
     addTransaction = event => {
 
         axios.post('/transactions', {
+
+
             "name": this.state.newTransaction.name,
             "type": this.state.newTransaction.type,
             "value": this.state.newTransaction.value,
-            "id": this.state.newTransaction.id
-        })
+            "id": Math.floor(Math.random() * 10000)
 
 
+    })
             .then(function (response) {
                 console.log(response);
             })
@@ -198,18 +212,20 @@ class MainPage extends Component {
     }
 
 
+
     refreshRecords = () => {
         axios.get("/transactions").then(response => {
             this.setState({transactions: response.data});
         })
     }
 
-    removeRecord = (removingId) => {
+    removeRecord =(removingId) => {
         axios.delete('/transactions/' + removingId).then(this.refreshRecords)
     }
 
+
     render() {
-        const {newTransaction: {name, value, type}} = this.state
+        const { newTransaction: {name, value, type}} = this.state
         return (
             <div>
                 <Header>
@@ -260,9 +276,7 @@ class MainPage extends Component {
 
                     {this.filterTransactions().map(({name, value, type, id}) => (
                         <div>
-                            <div onClick={() => {
-                                this.removeRecord(id)
-                            }}>{id}  </div>
+                            <div onClick={() => { this.removeRecord(id) }} >{id}  </div>
 
                             <Record key={id} name={name} value={this.isExpense(type, value)} type={type} id={id}/>
                         </div>
@@ -274,4 +288,4 @@ class MainPage extends Component {
     }
 }
 
-export default withTransactions(MainPage);
+export default MainPage;
