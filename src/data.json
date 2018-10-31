@@ -1,11 +1,28 @@
 {
   "transactions": [
     {
-      "name": "Sample transaction",
+      "name": "",
       "type": "income",
-      "value": 999,
-      "created": 1,
-      "id": 1
+      "value": 0,
+      "id": 2
+    },
+    {
+      "name": "",
+      "type": "income",
+      "value": 0,
+      "id": 3
+    },
+    {
+      "name": "",
+      "type": "income",
+      "value": 0,
+      "id": 4
+    },
+    {
+      "name": "",
+      "type": "income",
+      "value": 0,
+      "id": 5
     }
   ]
 }

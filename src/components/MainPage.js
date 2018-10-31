@@ -103,7 +103,8 @@ class MainPage extends Component {
             type: "income"
         },
         modalIsOpen: false,
-        filterType: 0
+        filterType: 0,
+        localTrans: this.props
     };
 
     componentDidMount() {
@@ -113,6 +114,9 @@ class MainPage extends Component {
         })
 
     }
+
+
+
 
 
 
@@ -179,16 +183,14 @@ class MainPage extends Component {
     })
             .then(function (response) {
                 console.log(response);
+                this.props.onStateUpdate(response.data)
             })
             .catch(function (error) {
                 console.log(error);
             });
 
         event.preventDefault();
-        this.setState(prevState => ({
-            transactions: [...prevState.transactions.concat(prevState.newTransaction)]
-            //transactions: prevState.transactions.concat(prevState.newTransaction
-        }));
+        this.refreshRecords();
         this.closeModal();
     };
 
@@ -215,7 +217,7 @@ class MainPage extends Component {
 
     refreshRecords = () => {
         axios.get("/transactions").then(response => {
-            this.setState({transactions: response.data});
+            this.setState({localTrans: response.data});
         })
     }
 
